@@ -1,4 +1,4 @@
 import lib.pyperclip_test
 import pyperclip
 
-pyperclip.copy(pyperclip.paste().replace(' ', '\n'))
+pyperclip.copy('\n'.join(pyperclip.paste().split()))
