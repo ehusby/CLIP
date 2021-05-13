@@ -1,5 +1,5 @@
 
-from lib import clip_func
+from lib import base_func
 
 
 def geo_address_to_coords(address, coord_axis_order=('lat', 'lon')):
@@ -35,7 +35,7 @@ def geo_coords_to_address(coords, coord_axis_order=('lat', 'lon')):
     clip_contents = coords.strip()
     match = re.search(coords_pattern, clip_contents, re.MULTILINE)
     if match is None:
-        raise clip_func.ClipSyntaxError(
+        raise base_func.ClipSyntaxError(
             "Failed to parse lat/lon coordinates from clipboard using regex: {}".format(coords_pattern)
         )
     coords_tuple = match.groups()
@@ -55,7 +55,7 @@ def geo_coords_to_address(coords, coord_axis_order=('lat', 'lon')):
     if address_json_displayname_key not in address_json:
         print("Lookup URL: {}".format(lookup_url))
         print("JSON data: {}".format(address_json))
-        raise clip_func.ClipLookupError("Address string key '{}' not found in JSON data".format(address_json_displayname_key))
+        raise base_func.ClipLookupError("Address string key '{}' not found in JSON data".format(address_json_displayname_key))
 
     address_string = address_json[address_json_displayname_key]
     return address_string

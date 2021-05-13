@@ -1,7 +1,7 @@
-from lib import clip_func
+from lib import base_func
 
 import sys
 
 print("Python executable location:\n\n{}".format(sys.executable))
 
-clip_func.wait_for_user_exit()
+base_func.wait_for_user_exit()

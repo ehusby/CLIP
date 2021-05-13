@@ -1,5 +1,5 @@
-from lib import clip_func
-clip_func.test_pyperclip_import_standalone()
+from lib import base_func
+base_func.test_pyperclip_import_standalone()
 import pyperclip
 try:
     import os
@@ -23,6 +23,6 @@ try:
     print("\nDuplicate list has been copied to clipboard and written to output textfile: " + outfile)
 
 except:
-    clip_func.display_error_message()
+    base_func.display_error_message()
 finally:
-    clip_func.wait_for_user_exit()
+    base_func.wait_for_user_exit()
