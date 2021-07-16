@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from lib import base_func
 
 import sys
