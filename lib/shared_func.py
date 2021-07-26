@@ -29,11 +29,11 @@ def geo_coords_to_address(coords, coord_axis_order=('lat', 'lon')):
     import re
     import urllib.request
 
-    coords_pattern = ".*?(-?\d+\.?\d*).*?[\r\n]*(-?\d+\.?\d*).*?"
+    coords_pattern = r".*?(-?\d+\.?\d*).*?[\r\n]*(-?\d+\.?\d*).*?"
     address_json_displayname_key = 'display_name'
 
     clip_contents = coords.strip()
-    match = re.search(coords_pattern, clip_contents, re.MULTILINE)
+    match = re.search(coords_pattern, clip_contents, flags=re.MULTILINE)
     if match is None:
         raise base_func.ClipSyntaxError(
             "Failed to parse lat/lon coordinates from clipboard using regex: {}".format(coords_pattern)
