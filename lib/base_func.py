@@ -4,7 +4,7 @@ import traceback
 import sys
 
 
-class ClipSyntaxError(Exception):
+class ClipInputError(Exception):
     def __init__(self, msg=""):
         super(Exception, self).__init__(msg)
 
@@ -13,36 +13,42 @@ class ClipLookupError(Exception):
         super(Exception, self).__init__(msg)
 
 
-def display_error_message():
-    print("\n--- ERROR ---")
-    traceback.print_exc()
-    print("-------------")
+def eprint(*args, **kwargs):
+    print(*args, file=sys.stderr, **kwargs)
 
 
-def wait_for_user_exit():
-    print("\nPress [ENTER] to exit", end='')
+def get_user_input(prompt):
     try:
         input_bwc = raw_input
     except NameError:
         input_bwc = input
-    _ = input_bwc()
-    sys.exit(1)
+    return input_bwc(prompt)
+
+
+def wait_for_user_exit(exit_code=0):
+    get_user_input("\nPress [ENTER] to exit")
+    sys.exit(exit_code)
+
+
+def display_error_message(msg=None, exit_after=True):
+    eprint("\n--- ERROR ---")
+    if msg is not None:
+        eprint(msg)
+    else:
+        traceback.print_exc()
+    eprint("-------------")
+    if exit_after:
+        wait_for_user_exit(1)
 
 
 def test_pyperclip_import():
     try:
         import pyperclip
     except ImportError:
-        print("\nERROR: Required Python package 'pyperclip' not found.")
-        print("Try running the following command to install it:\n\n`{}`".format(
-            "pip install pyperclip"
-        ))
-        wait_for_user_exit()
-
-
-def test_pyperclip_import_standalone():
-    try:
-        test_pyperclip_import()
+        display_error_message('\n'.join([
+            "Required Python package 'pyperclip' not found.",
+            "Try running the following command to install it:",
+            "   pip install pyperclip",
+        ]))
     except Exception:
         display_error_message()
-        wait_for_user_exit()

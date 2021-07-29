@@ -4,4 +4,4 @@ from lib import base_func
 base_func.test_pyperclip_import()
 import pyperclip
 
-pyperclip.copy(pyperclip.paste().replace(' ', ','))
+pyperclip.copy("st_intersects(wkb_geometry, st_geomfromewkt('{}'))".format(pyperclip.paste()))

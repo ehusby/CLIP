@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from lib import base_func
-base_func.test_pyperclip_import_standalone()
+base_func.test_pyperclip_import()
 import pyperclip
 try:
     from lib.shared_func import geo_address_to_coords
@@ -15,4 +15,3 @@ try:
 
 except:
     base_func.display_error_message()
-    base_func.wait_for_user_exit()

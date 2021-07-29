@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from lib import base_func
-base_func.test_pyperclip_import_standalone()
+base_func.test_pyperclip_import()
 import pyperclip
 try:
     import os
@@ -26,5 +26,5 @@ try:
 
 except:
     base_func.display_error_message()
-finally:
+else:
     base_func.wait_for_user_exit()
