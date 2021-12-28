@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 
 from lib import base_func
+try:
+    import sys
 
-import sys
+    print("Python executable location:\n\n{}".format(sys.executable))
 
-print("Python executable location:\n\n{}".format(sys.executable))
-
-base_func.wait_for_user_exit()
+except:
+    base_func.display_error_message()
+else:
+    base_func.wait_for_user_exit()
