@@ -3,7 +3,6 @@
 from lib import base_func
 base_func.test_pyperclip_import()
 import pyperclip
-
 try:
     import re
 
