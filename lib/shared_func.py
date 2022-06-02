@@ -76,7 +76,7 @@ def geo_coords_to_address(coords, coord_axis_order=('lat', 'lon')):
     coords_list = geo_parse_coords(coords)
     coords_dict = dict(zip(coord_axis_order, coords_list))
 
-    lookup_url = r'http://nominatim.openstreetmap.org/reverse?&format=json&limit=1&addressdetails=0&accept-language=en&zoom=10&email=intellij.geocoding.plugin@gmail.com&lon={}&lat={}'.format(
+    lookup_url = r'https://nominatim.openstreetmap.org/reverse?&format=json&limit=1&addressdetails=0&accept-language=en&zoom=10&email=intellij.geocoding.plugin@gmail.com&lon={}&lat={}'.format(
         coords_dict['lon'], coords_dict['lat']
     )
     try:
