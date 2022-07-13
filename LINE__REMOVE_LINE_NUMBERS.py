@@ -5,7 +5,7 @@ base_func.test_pyperclip_import()
 import pyperclip
 try:
     import re
-    pyperclip.copy(re.sub(r"^\s*\d+ ", '', pyperclip.paste(), flags=re.MULTILINE))
+    pyperclip.copy(re.sub(r"^\s*\d+ ?(.*)$", r"\1", pyperclip.paste(), flags=re.MULTILINE))
 
 except:
     base_func.display_error_message()
