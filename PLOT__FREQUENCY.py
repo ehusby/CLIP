@@ -15,7 +15,9 @@ try:
     clip_items.sort()
 
     series = pd.Series(clip_items)
-    series.value_counts(sort=False).plot(kind='bar')
+    value_count = series.value_counts(sort=False)
+    value_count.sort_index(inplace=True)
+    value_count.plot(kind='bar')
 
     plt.show()
 
