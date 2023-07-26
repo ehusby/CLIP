@@ -12,10 +12,10 @@ try:
     import csv
 
     with StringIO(pyperclip.paste()) as fp:
-        reader = csv.reader(fp, delimiter='\t')
+        reader = csv.reader(fp, delimiter=',')
         header = next(reader)
 
-        print("-- Attribute table fields --")
+        print("-- First row field values --")
         nfields = len(header)
         idx_display_format = '{: >%d}' % len(str(nfields))
         for idx, field in enumerate(header):
@@ -25,7 +25,7 @@ try:
 
         use_first_row = ''
         while use_first_row not in ('y', 'n'):
-            use_first_row = base_func.get_user_input("Include header row in output? (y/n): ")
+            use_first_row = base_func.get_user_input("Include first row in output? (y/n): ")
             use_first_row = use_first_row.strip().lower()
         if use_first_row == 'y':
             fp.seek(0)
