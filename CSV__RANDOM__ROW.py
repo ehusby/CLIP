@@ -19,7 +19,7 @@ try:
     random_row = random.choice(rows_list)
     for field in field_list:
         value = random_row[field]
-        print("{}: {}".format(field, value))
+        print(f"{field}: {value}")
 
 except:
     base_func.display_error_message()

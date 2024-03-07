@@ -22,7 +22,7 @@ try:
     text = pyperclip.paste()
     band_p_block = re.search(r"<BAND_P>.*?</BAND_P>", text, flags=re.DOTALL)
     if band_p_block is None:
-        text = f"<BAND_P>\n{text}\n</BAND_P>"
+        text = "<BAND_P>\n{}\n</BAND_P>".format(text)
     else:
         text = band_p_block.group()
 

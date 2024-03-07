@@ -6,7 +6,7 @@ import pyperclip
 try:
     import os
 
-    outfile = os.path.expanduser('~/clip_intersect.txt')
+    outfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "temp", "clip_intersect.txt")
 
 
     print("A ∩ B = C")

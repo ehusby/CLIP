@@ -22,7 +22,7 @@ try:
 
     for field in field_list:
         random_value = random.choice(field_values_dict[field])
-        print("{}: {}".format(field, random_value))
+        print(f"{field}: {random_value}")
 
 except:
     base_func.display_error_message()

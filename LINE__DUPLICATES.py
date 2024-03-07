@@ -7,7 +7,7 @@ try:
     import os
     import collections
 
-    outfile = os.path.expanduser('~/clip_duplicates.txt')
+    outfile = os.path.join(os.path.dirname(os.path.realpath(__file__)), "temp", "clip_duplicates.txt")
 
 
     item_list = pyperclip.paste().strip().splitlines()

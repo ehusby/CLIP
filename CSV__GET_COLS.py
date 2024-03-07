@@ -20,14 +20,16 @@ try:
         idx_display_format = '{: >%d}' % len(str(nfields))
         for idx, field in enumerate(header):
             idx_display = idx_display_format.format(idx)
-            print("{}: {}".format(idx_display, field))
+            print(f"{idx_display}: {field}")
         print('')
 
-        use_first_row = ''
-        while use_first_row not in ('y', 'n'):
-            use_first_row = base_func.get_user_input("Include first row in output? (y/n): ")
-            use_first_row = use_first_row.strip().lower()
-        if use_first_row == 'y':
+        input_str = ''
+        while input_str not in ('y', 'n'):
+            input_str = base_func.get_user_input("Include first row in output? (y/n): ")
+            input_str = input_str.strip().lower()
+        use_first_row = input_str == 'y'
+        
+        if use_first_row:
             fp.seek(0)
 
         field_col_idx_list = []
@@ -43,9 +45,7 @@ try:
                     if 0 <= field_sel_n < nfields:
                         field_col_idx_list.append(field_sel_n)
                     else:
-                        print("\nInput integer ({}) is out of field index range [0, {}]\n".format(
-                            field_sel_n, nfields-1
-                        ))
+                        print(f"\nInput integer ({field_sel_n}) is out of field index range [0, {nfields-1}]\n")
                         valid_input = False
                         break
 
@@ -57,7 +57,7 @@ try:
                             field_sel = field_sel.strip(quote_char)
                             break
                     if field_sel not in header:
-                        print("\nInput string not found in header fields: '{}'".format(field_sel))
+                        print(f"\nInput string not found in header fields: '{field_sel}'")
                         valid_input = False
                         break
                     else:

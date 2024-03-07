@@ -20,7 +20,7 @@ try:
         idx_display_format = '{: >%d}' % len(str(nfields))
         for idx, field in enumerate(header):
             idx_display = idx_display_format.format(idx)
-            print("{}: {}".format(idx_display, field))
+            print(f"{idx_display}: {field}")
         print('')
 
         use_first_row = ''
@@ -39,21 +39,17 @@ try:
 
         for coord_name in sorted(list(coord_idx_dict.keys())):
             while True:
-                coord_idx = base_func.get_user_input("{} coordinate field index: ".format(coord_name)).strip()
+                coord_idx = base_func.get_user_input(f"{coord_name} coordinate field index: ").strip()
                 if coord_idx.isdigit():
                     coord_idx = int(coord_idx)
                     if 0 <= coord_idx <= nfields:
                         if coord_idx in list(coord_idx_dict.values()):
-                            print("\nInput integer ({}) was already selected for other coordinate field index\n".format(
-                                coord_idx
-                            ))
+                            print(f"\nInput integer ({coord_idx}) was already selected for other coordinate field index\n")
                         else:
                             coord_idx_dict[coord_name] = coord_idx
                             break
                     else:
-                        print("\nInput integer ({}) is out of field index range [0, {}]\n".format(
-                            coord_idx, nfields-1
-                        ))
+                        print(f"\nInput integer ({coord_idx}) is out of field index range [0, {nfields-1}]\n")
 
         output_row_lines = []
         for row in reader:

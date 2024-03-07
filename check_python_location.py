@@ -4,7 +4,7 @@ from lib import base_func
 try:
     import sys
 
-    print("Python executable location:\n\n{}".format(sys.executable))
+    print(f"Python executable location:\n\n{sys.executable}")
 
 except:
     base_func.display_error_message()
