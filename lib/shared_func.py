@@ -51,13 +51,13 @@ def geo_address_to_coords(address, coord_axis_order=('lat', 'lon')):
     address = address.strip()
 
     lookup_url = r'https://nominatim.openstreetmap.org/search?&format=json&limit=1&polygon=0&addressdetails=0&email=intellij.geocoding.plugin@gmail.com&q={}'.format(
-        urllib.parse.quote('"{}"'.format(address))
+        urllib.parse.quote(f'"{address}"')
     )
     try:
         with urllib.request.urlopen(lookup_url) as response:
             address_json = json.loads(response.read().decode())
     except:
-        print("Lookup URL: {}".format(lookup_url))
+        print(f"Lookup URL: {lookup_url}")
         raise
 
     latlon_string = ','.join(operator.itemgetter(*coord_axis_order)(address_json[0]))
@@ -83,13 +83,13 @@ def geo_coords_to_address(coords, coord_axis_order=('lat', 'lon')):
         with urllib.request.urlopen(lookup_url) as response:
             address_json = json.loads(response.read().decode())
     except:
-        print("Lookup URL: {}".format(lookup_url))
+        print(f"Lookup URL: {lookup_url}")
         raise
 
     if address_json_displayname_key not in address_json:
-        print("Lookup URL: {}".format(lookup_url))
-        print("JSON data: {}".format(address_json))
-        raise base_func.ClipLookupError("Address string key '{}' not found in JSON data".format(address_json_displayname_key))
+        print(f"Lookup URL: {lookup_url}")
+        print(f"JSON data: {address_json}")
+        raise base_func.ClipLookupError(f"Address string key '{address_json_displayname_key}' not found in JSON data")
 
     address_string = address_json[address_json_displayname_key]
     return address_string
