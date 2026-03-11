@@ -61,7 +61,7 @@ try:
             if not valid_input:
                 field_col_idx_list = []
 
-        output_row_lines = []
+        output_row_lines = ['\t'.join(header)]
         for row in reader:
             output_row_values = []
             for field_col_idx, value in enumerate(row):
@@ -71,7 +71,7 @@ try:
                     )
                 else:
                     output_row_values.append(value)
-            output_row = ','.join(output_row_values)
+            output_row = '\t'.join(output_row_values)
             output_row_lines.append(output_row)
 
         pyperclip.copy('\n'.join(output_row_lines))

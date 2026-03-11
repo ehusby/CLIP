@@ -11,7 +11,7 @@ read -r -d '' s3_lines << EOM
 EOM
 
 echo "$s3_lines" | while IFS= read -r s3_path; do
-    aws_cmd cp "$s3_path" ./
+    aws_s3 cp "$s3_path" ./
 done
 """
 )

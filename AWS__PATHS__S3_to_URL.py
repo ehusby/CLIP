@@ -10,17 +10,27 @@ try:
 
     s = pyperclip.paste()
     s = re.sub(
-        r"^.*s3://([^/]+)/([^ ]+).*$",
+        r"^[^/]*?https?://([^/]+)\.s3\.[^/]+/(.*)$",
+        r"s3://\1/\2",
+        s
+    )
+    s = re.sub(
+        r"^[^/]*?https?://(s3://.*)$",
+        r"\1",
+        s
+    )
+    s = re.sub(
+        r"^[^/]?/vsis3/([^/]+)/(.*)$",
+        r"s3://\1/\2",
+        s
+    )
+    s = re.sub(
+        r"^[^/]?s3://([^/]+)/([^ ]+).*$",
         fr"https://{region}.console.aws.amazon.com/s3/object/\1?region={region}&bucketType=general&prefix=\2",
         s
     )
     s = re.sub(
-        r"^.*s3://([^/]+)/([^ ]+).*$",
-        fr"https://{region}.console.aws.amazon.com/s3/object/\1?region={region}&bucketType=general&prefix=\2",
-        s
-    )
-    s = re.sub(
-        r"(/[^/\.]+)$",
+        r"(/[^/.]+)$",
         r"\1/",
         s
     )
